@@ -1,0 +1,10 @@
+{
+  "global_ambient" : [0.9, 0.05, 0.05, 0.1],
+  "light1" : {
+    "location": [0, 5, 0],
+    "settings":{
+      "warm_color": [0.9, 0.1, 0.0],
+      "cold_color": [0.0, 0.2, 0.8]
+    }
+  }
+}

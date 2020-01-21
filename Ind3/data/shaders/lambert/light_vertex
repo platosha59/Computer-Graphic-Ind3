@@ -1,0 +1,14 @@
+uniform vec3 Light_location;
+
+varying vec2 texcoord;
+varying vec3 light_dir;
+varying vec3 normal;
+
+void main(){
+	texcoord = vec2(gl_MultiTexCoord0);
+	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+
+    vec3 p = vec3(gl_ModelViewMatrix * gl_Vertex);
+    light_dir = normalize(vec3(Light_location) - p);
+    normal = normalize(gl_NormalMatrix * gl_Normal);
+}

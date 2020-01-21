@@ -1,0 +1,14 @@
+uniform sampler2D texture;
+
+varying vec2 texcoord;
+varying vec3 light_dir;
+varying vec3 normal;
+
+void main() {
+    vec3 n_light_dir = normalize(light_dir);
+    vec3 n_normal = normalize(normal);
+
+    vec4 color = texture2D(texture, texcoord);
+    vec4 color_with_light = color * max(0.0, dot(n_normal, n_light_dir));
+	gl_FragColor = color_with_light;
+}

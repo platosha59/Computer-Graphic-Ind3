@@ -1,0 +1,20 @@
+uniform sampler2D texture;
+uniform float specular_power;
+uniform vec4 specular_color;
+
+varying vec2 texcoord;
+varying vec3 light_dir;
+varying vec3 normal;
+varying vec3 binormal;
+
+void main() {
+    vec3 n_light_dir = normalize(light_dir);
+    vec3 n_normal = normalize(normal);
+    vec3 n_binormal = normalize(binormal);
+
+    vec4 color = texture2D(texture, texcoord);
+    vec4 color_with_light = color * max(0.0, dot(n_normal, n_light_dir));
+    vec4 specular_effect = specular_color * pow(max(dot(n_normal, n_binormal), 0.0), specular_power);
+
+	gl_FragColor = color_with_light + specular_effect;
+}
